@@ -167,4 +167,18 @@ let d="hi"
 let birds=["owl","hawk", "spa"]
 
 console.log(animals.concat(birds));
-
+var code="pak"
+//switch
+switch(code){
+    case "in":
+        console.log("hi india")
+        break;
+    case "pak":
+        console.log("hi pak")
+        break;
+    case "usa":
+      console.log("hi usa")
+      break;
+      default:
+      console.log("hi default")
+}
