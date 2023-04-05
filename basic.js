@@ -182,3 +182,64 @@ switch(code){
       default:
       console.log("hi default")
 }
+// console.log(birds.concat(animals));
+
+//While loop
+
+ let arr=[31,62,73,54]
+// let i=0
+
+// while(i<arr.length){
+// console.log(arr[i]);
+// i++
+// }
+
+//Break
+
+// let i=0;
+// console.log(i);
+
+// while(i<arr.length){
+// console.log(arr[i]);
+// i++
+// }
+
+// let i=0;
+// while(i<arr.length){
+//     if(i==2){
+//         break;
+//     }
+// i++
+// }
+// console.log(i);
+// console.log(arr[i]);
+
+// Continue
+
+ let str="";
+
+// for(let i=0; i<10; i++){
+//     if(i==7){
+//         continue
+//     }
+//     str=str+i
+// }
+// console.log(str);
+
+
+// let i=0
+// while(i<10){
+// if(i==6){
+// continue 
+// }
+// str=str+i 
+// i++
+// }
+// console.log(str);
+
+//Truthy Values
+
+let age=23
+if(age){
+    console.log("hi priented");
+}
