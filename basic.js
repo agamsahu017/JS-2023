@@ -135,3 +135,36 @@ let d="hi"
 // console.log(typeof b);
 // b=Number(b)
 // console.log(typeof b);
+
+//Arrays
+// let numbers=[3,11,18,4,40,25]
+// console.log(numbers[3]);  //Reading array
+// console.log(numbers[1]);
+
+// //writing array
+// numbers[9]=56
+// console.log(numbers);
+// //array length
+// console.log(numbers.length);
+
+//Array push function return the array length
+// let x=numbers.push(89)
+// let y=numbers.push(93)
+// console.log(x);
+// console.log(y);
+
+// let t=numbers.pop()
+// let u=numbers.pop()
+// console.log(t);
+// console.log(u);
+
+// //indexOf()
+ let animals=['cat','dog','goat']
+// console.log(animals.indexOf('goat'));
+// console.log(animals.indexOf('fox'));
+
+//concat function
+let birds=["owl","hawk", "spa"]
+
+console.log(animals.concat(birds));
+
