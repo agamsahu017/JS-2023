@@ -76,13 +76,62 @@ const text= "Hero"
 // console.log(words.slice(-1));
 
 //split()
-let newWords="Hello world"
-console.log(newWords.split(" "));
-console.log(newWords.split(""));
-console.log(newWords.split("o"));
+// let newWords="Hello world"
+// console.log(newWords.split(" "));
+// console.log(newWords.split(""));
+// console.log(newWords.split("o"));
 
-let word="Hello"
-console.log(word.split(''));
-console.log(word.split('l'));
-console.log(word.split('o'));
+// let word="Hello"
+// console.log(word.split(''));
+// console.log(word.split('l'));
+// console.log(word.split('o'));
 
+// let a=5
+// let b=6;
+// let c= a%b;
+// console.log(c);
+
+//Airthmetic operators
+
+// console.log(a++); //
+// console.log(a+2);  
+// console.log(a--); //
+// console.log(a-2);/
+
+//Loose equality
+// let age="20"
+// if(age == 20){
+//     console.log("it works");
+// }else{
+//     console.log("it does not works");
+// }
+
+// //strict equality
+
+// if(age === 20){
+//     console.log("it works");
+// }else{
+//     console.log("it does not works");
+// }
+
+//Type  coercion
+// let a=5
+let b="6"
+
+// console.log(a+b);
+// console.log(a*b);
+// console.log(a-b);
+
+let c=5;
+let d="hi"
+
+// console.log(c+d);
+// console.log(c-d);
+// console.log(c*d); //NaN Not a number
+// console.log(c+d);
+
+//Type conversion
+// console.log(b);
+// console.log(typeof b);
+// b=Number(b)
+// console.log(typeof b);
