@@ -243,3 +243,11 @@ let age=23
 if(age){
     console.log("hi priented");
 }
+let fname="agam"
+const person={
+  agam:"abhishek",
+  age:34,
+
+}
+console.log(fname);
+console.log(person[fname]);
