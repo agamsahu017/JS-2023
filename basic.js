@@ -251,3 +251,51 @@ const person={
 }
 console.log(fname);
 console.log(person[fname]);
+
+// const obj={
+//     name:"deecode",
+//     age:80,
+//     language:"JS lanhuage"
+// }
+// const myKey="language"
+
+// console.log(obj.myKey);
+// console.log(obj[myKey]);
+
+//This
+
+const person = {
+    name: "agqm",
+    city: "lucknow",
+    gender: "male",
+    getSex: function () {
+        return this.gender
+    },
+    getFunction() {
+        return this.city + ' ' + this.name
+    }
+}
+
+// console.log(person.city);
+// console.log(person.getFunction());
+// console.log(person.getSex());
+
+// const people = {
+//     name: "p1",
+//     getName: function () {
+//         return this.name
+//     }
+// }
+// console.log(people.getName());
+
+// //forEach
+
+// const cities = ["NY", "LA", "CL"]
+// const lowerCities = [];
+
+// cities.forEach((elem) => lowerCities.push(elem.toLowerCase()))
+// console.log(lowerCities);
+
+//Math.trunc
+const x=-996.9955
+console.log(Math.trunc(x));
