@@ -40,6 +40,7 @@ let hotel={
     location:"xyz gomti nagar",
     categories:["chinease","italian", "english"],
     mainMenu:["FoodA","FoodB","FoodC"],
+    starterMenu:["SpecialFoodA","SpecialFoodB","SpecialFoodC"],
     openingHours:{
         sunday:{open:"09:00AM", close:"09:00PM"},
         monday:{open:"10:00AM", close:"10:00PM"},
@@ -115,6 +116,52 @@ let [a,b, ...x]= nums
 
 let {wednesday, ...weekDays}=hotel.openingHours
 // console.log(sunday);
-console.log(weekDays);
-console.log(wednesday);
+// console.log(weekDays);
+// console.log(wednesday);
 
+//Short circuit
+
+// let result1= 5000 && 0
+// let result= null && 0
+// let result= 0 && null
+// let result= "" && "coders"
+// let result= "aga" && "coders"
+// let result= "aga" && "" && "coders"
+// let result= "aga" && 0 && "coders"
+// && -> last true vale
+//OR  -> first true value
+
+// let result= "Coders" || 0
+// let result= "Coders" || "programmers"
+// let result= "" || "programmers"
+// let result= "" || null
+
+// console.log(result); //last values comes
+//nullish coalesing operator (??) only null and undefined
+// 0 is a valid value
+
+// let numGuests=0
+// let result= numGuests || 10 //default assignment
+// let result1= numGuests ?? 10 //default assignment
+// console.log(result);
+// console.log(result1);
+//0 is a not a nullish value
+
+//For of loop ->array
+
+let menu=[...hotel.mainMenu, ...hotel.starterMenu]
+console.log(menu);
+
+for(let elem of menu){
+    // console.log(elem);
+}
+
+// for(let item of menu.entries()){
+// // console.log(item);
+// console.log(`${item[0]+1} : ${item[1]}`);
+// }
+
+for(let [k,v] of menu.entries()){
+    //  console.log(k);
+     console.log(`${k+1} : ${v}`);
+    }
