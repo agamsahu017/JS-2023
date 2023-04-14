@@ -35,19 +35,19 @@ console.log("es6");
 
 //Object desctructing
 
-let hotel={
-    name:"Agam hotel",
-    location:"xyz gomti nagar",
-    categories:["chinease","italian", "english"],
-    mainMenu:["FoodA","FoodB","FoodC"],
-    starterMenu:["SpecialFoodA","SpecialFoodB","SpecialFoodC"],
-    openingHours:{
-        sunday:{open:"09:00AM", close:"09:00PM"},
-        monday:{open:"10:00AM", close:"10:00PM"},
-        wednesday:{open:"11:00AM", close:"09:00PM"},
-        tuesday:{open:"11:00AM", close:"09:00PM"},
-    }
-}
+// let hotel={
+//     name:"Agam hotel",
+//     location:"xyz gomti nagar",
+//     categories:["chinease","italian", "english"],
+//     mainMenu:["FoodA","FoodB","FoodC"],
+//     starterMenu:["SpecialFoodA","SpecialFoodB","SpecialFoodC"],
+//     openingHours:{
+//         sunday:{open:"09:00AM", close:"09:00PM"},
+//         monday:{open:"10:00AM", close:"10:00PM"},
+//         wednesday:{open:"11:00AM", close:"09:00PM"},
+//         tuesday:{open:"11:00AM", close:"09:00PM"},
+//     }
+// }
 // let {name, location, mainMenu}=hotel
 
 // console.log(name);
@@ -73,7 +73,7 @@ let hotel={
 
 //desctructing nested objects
 
-let {name, openingHours:{sunday:{open, close}, monday}}= hotel
+// let {name, openingHours:{sunday:{open, close}, monday}}= hotel
 
 // console.log(name);
 // // console.log(sunday);
@@ -87,14 +87,14 @@ let nums=[2,3,5,7,8,9]
 let newArray=[9,10,...nums]
 // console.log(newArray);
 
-let updatedMenu=[ ...hotel.mainMenu, "FoodE","FoodF"]
+// let updatedMenu=[ ...hotel.mainMenu, "FoodE","FoodF"]
 // console.log(updatedMenu);
 
 //Shallow Copy 
 //create a shallow copy using spread operator
 
-let copyArray=[...updatedMenu]
-copyArray[1]="UpdatedFood"
+// let copyArray=[...updatedMenu]
+// copyArray[1]="UpdatedFood"
 // console.log(copyArray);
 
 //Spread(...) operator RHS
@@ -114,7 +114,7 @@ let [a,b, ...x]= nums
 // console.log(b);
 // console.log(x);
 
-let {wednesday, ...weekDays}=hotel.openingHours
+// let {wednesday, ...weekDays}=hotel.openingHours
 // console.log(sunday);
 // console.log(weekDays);
 // console.log(wednesday);
@@ -149,19 +149,78 @@ let {wednesday, ...weekDays}=hotel.openingHours
 
 //For of loop ->array
 
-let menu=[...hotel.mainMenu, ...hotel.starterMenu]
-console.log(menu);
+// let menu=[...hotel.mainMenu, ...hotel.starterMenu]
+// console.log(menu);
 
-for(let elem of menu){
-    // console.log(elem);
-}
+// for(let elem of menu){
+//     // console.log(elem);
+// }
 
 // for(let item of menu.entries()){
 // // console.log(item);
 // console.log(`${item[0]+1} : ${item[1]}`);
 // }
 
-for(let [k,v] of menu.entries()){
-    //  console.log(k);
-     console.log(`${k+1} : ${v}`);
-    }
+// for(let [k,v] of menu.entries()){
+//     //  console.log(k);
+//      console.log(`${k+1} : ${v}`);
+//     }
+
+// Enhanced Object Literals-shortcuts
+// we can use computed property name
+
+let openingHours={
+    sunday:{open:"09:00AM", close:"09:00PM"},
+    monday:{open:"10:00AM", close:"10:00PM"},
+    wednesday:{open:"11:00AM", close:"09:00PM"},
+    tuesday:{open:"11:00AM", close:"09:00PM"},
+}
+
+//keys(Properties)
+let properties=Object.keys(openingHours)
+ console.log("181 ",properties); //[sunday, monday,tues]
+
+for(let key of properties){
+    console.log(key);  //sunday //
+}
+
+//values
+let val=Object.values(openingHours)
+console.log(val);  
+
+for(let key of val){
+    console.log(key);  //each array index print hoga
+}
+
+let ent= Object.entries(openingHours)
+ console.log(ent);
+
+for(let [key, {open , close}] of ent){
+    console.log(key +'-----------'+open+'-------'+close);
+}
+
+let menuType="PlatinumMenu"
+
+let hotel1={
+    name:"Agam hotel",
+    location:"xyz gomti nagar",
+    categories:["chinease","italian", "english"],
+    mainMenu:["FoodA","FoodB","FoodC"],
+    starterMenu:["SpecialFoodA","SpecialFoodB","SpecialFoodC"],
+    openingHours,
+    order(){
+    },
+    [menuType]:["different food items"]
+}
+// console.log("169 ", hotel1);
+
+//Optional Chaining ?.
+//return undefined or null
+if(hotel1.openingHours && hotel1.openingHours.sunday){
+    // console.log(hotel1.openingHours.sunday.open);
+}
+// console.log(hotel1.openingHours.saturday);
+// console.log(hotel1.openingHours.saturday?.open);
+
+//Looping objects
+//Objects are non-iterables but indirectly we can
