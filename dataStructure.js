@@ -34,4 +34,14 @@ console.log(fib(3))
 ///////////////////////////////////////
 
 const fib=(n)=> (n<=1 ? n : fib(n-1)+fib(n-2))
+
+////////////////// valid Anagram
+
+const isAnagram=(s,t)=>{
+   s= s.split("").sort().join("")
+   t= t.split("").sort().join("")
+   return s === t
+}
+console.log(isAnagram("anagram","nagaram"));
+console.log(isAnagram("rat","car"));
 console.log(fib(8))
