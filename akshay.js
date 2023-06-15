@@ -204,3 +204,189 @@ function x() {
 
 //Episode 10 : Closures in JS
 
+function x() {
+    var a = 7;
+    function y() {
+        console.log(a);
+    }
+    return y;
+}
+var z = x();
+console.log(z);  // value of z is entire code of function y.
+
+//0r
+function x() {
+    var a = 7;
+    function y() {
+        console.log(a);
+    }
+    return y;
+}
+x()();
+
+//
+    function z() {
+        var b = 900;
+        function x() {
+            var a=7;
+            function y(){
+                console.log(a,b);
+            }
+            y();
+        }
+        x();
+    }
+    z();    // 7 900
+	
+	//or
+	function z() {
+        var b = 900;
+        function x() {
+            var a=7;
+            function y(){
+                console.log(a,b);
+            }
+            return y;
+        }
+        return x;
+    }
+    z()()(); 
+
+
+//Episode 11 : setTimeout + Closures Interview Question
+
+
+function x() {
+    var i = 1;
+    setTimeout(function() {
+        console.log(i);
+    }, 3000);
+    console.log("Namaste Javascript");
+}
+x();
+// Output:
+// Namaste Javascript
+// 1 // after waiting 3 seconds
+
+///
+
+function x() {
+for(var i = 1; i<=5; i++){
+    setTimeout(function() {
+    console.log(i);
+    }, i*1000);
+    }
+    console.log("Namaste Javascript");
+}
+x();
+// Output:
+// Namaste Javascript
+// 6
+// 6
+// 6
+// 6
+// 6
+
+///
+
+function x() {
+for(let i = 1; i<=5; i++){
+    setTimeout(function() {
+    console.log(i);
+    }, i*1000);
+    }
+    console.log("Namaste Javascript");
+}
+x();
+
+//
+function x() {
+    for(var i = 1; i<=5; i++){
+    function close(i) {
+        setTimeout(function() {
+        console.log(i);
+        }, i*1000);
+        // put the setT function inside new function close()
+    }
+    close(i); // everytime you call close(i) it creates new copy of i. Only this time, it is with var itself!
+    }
+    console.log("Namaste Javascript");
+}
+x();
+
+// 12 Famous Interview Questions ft. Closures
+
+function outer() {
+    var a = 10;
+    function inner() {
+        console.log(a);
+    } // inner forms a closure with outer
+    return inner;
+}
+outer()(); // 10 // over here first `()` will return inner function and then using secong `()` to call inner function 
+
+//////////
+function outer() {
+    function inner() {
+        console.log(a);
+    }
+    var a = 10;
+    return inner;
+}
+outer()(); // 10
+
+///////////////
+
+function outer() {
+    let a = 10;
+    function inner() {
+        console.log(a);
+    }
+    return inner;
+}
+outer()(); // 10
+
+//////////////
+
+function outest() {
+    var c = 20;
+    function outer(str) {
+        let a = 10;
+        function inner() {
+            console.log(a, c, str);
+        }
+        return inner;
+    }
+    return outer;
+}
+outest()("Hello There")(); // 10 20 "Hello There"
+
+//
+function outest() {
+    var c = 20;
+    function outer(str) {
+        let a = 10;
+        function inner() {
+            console.log(a, c, str);
+        }
+        return inner;
+    }
+    return outer;
+}
+outest()("Hello There")(); // 10 20 "Hello There"
+
+//
+function outest() {
+    var c = 20;
+    function outer(str) {
+        let a = 10;
+        function inner() {
+            console.log(a, c, str);
+        }
+        return inner;
+    }
+    return outer;
+}
+let a = 100;
+outest()("Hello There")(); // 10 20 "Hello There"
+
