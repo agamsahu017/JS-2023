@@ -685,3 +685,516 @@ const calculate=function(radius, operation){
 }
 calculate(radiusArr,area)
 calculate(radiusArr,circumference)
+
+
+
+// Episode 19 : map, filter & reduce
+
+const arr = [5, 1, 3, 2, 6];
+// Task 1: Double the array element: [10, 2, 6, 4, 12]
+function double(x) {
+  return x * 2;
+}
+const doubleArr = arr.map(double); // Internally map will run double function for each element of array and create a new array and returns it.
+console.log(doubleArr); // [10, 2, 6, 4, 12]
+
+// Task 2: Triple the array element
+const arr = [5, 1, 3, 2, 6];
+// Transformation logic
+function triple(x) {
+  return x * 3;
+}
+const tripleArr = arr.map(triple);
+console.log(tripleArr); // [15, 3, 9, 6, 18]
+
+// Task 3: Convert array elements to binary
+const arr = [5, 1, 3, 2, 6];
+// Transformation logic:
+function binary(x) {
+	return x.toString(2);
+}
+const binaryArr = arr.map(binary);
+
+// The above code can be rewritten as :
+const binaryArr = arr.map(function binary(x) {
+	return x.toString(2);
+}
+
+// OR -> Arrow function
+const binaryArr = arr.map((x) => x.toString(2));
+
+//Filter function
+
+const array = [5, 1, 3, 2, 6];
+// filter odd values
+function isOdd(x) {
+  return x % 2;
+}
+const oddArr = array.filter(isOdd); // [5,1,3]
+
+// Other way of writing the above:
+const oddArr = arr.filter((x) => x % 2);
+
+//Reduce function
+const array = [5, 1, 3, 2, 6];
+// Calculate sum of elements of array - Non functional programming way
+function findSum(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum = sum + arr[i];
+  }
+  return sum;
+}
+console.log(findSum(array)); // 17
+
+// reduce function way
+const sumOfElem = arr.reduce(function (accumulator, current) {
+  // current represent the value of array
+  // accumulator is used the result from element of array.
+  // In comparison to previous code snippet, *sum* variable is *accumulator* and *arr[i]* is *current*
+  accumulator = accumulator + current;
+  return accumulator;
+}, 0); //In above example sum was initialized with 0, so over here accumulator also needs to be initialized, so the second argument to reduce function represent the initialization value.
+console.log(sumOfElem); // 17
+
+// find max inside array: Non functional programming way:
+const array = [5, 1, 3, 2, 6];
+function findMax(arr) {
+    let max = 0;
+    for(let i = 0; i < arr.length; i++ {
+        if (arr[i] > max) {
+            max = arr[i]
+        }
+    }
+    return max;
+}
+console.log(findMax(array)); // 6
+
+// using reduce
+const output = arr.reduce((acc, current) => {
+	if (current > acc ) {
+		acc = current;
+	}
+	return acc;
+}, 0);
+console.log(output); // 6
+
+// acc is just a label which represent the accumulated value till now,
+// so we can also label it as max in this case
+const output = arr.reduce((max, current) => {
+	if (current > max) {
+		max= current;
+	}
+	return max;
+}, 0);
+console.log(output); // 6
+
+const users = [
+	{ firstName: "Alok", lastName: "Raj", age: 23 },
+	{ firstName: "Ashish", lastName: "Kumar", age: 29 },
+	{ firstName: "Ankit", lastName: "Roy", age: 29 },
+	{ firstName: "Pranav", lastName: "Mukherjee", age: 50 },
+];
+// Get array of full name : ["Alok Raj", "Ashish Kumar", ...]
+
+function fullName(x){
+	return x.firstName+' '+x.lastName
+}
+
+const fullNamePerson= users.map(fullName)
+console.log(fullNamePerson)
+
+
+// Get the count/report of how many unique people with unique age are there
+// like: {29 : 2, 75 : 1, 50 : 1}
+// We should use reduce, why? we want to deduce some information from the array. Basically we want to get a single object as output
+const report = users.reduce((acc, curr) => {
+	if(acc[curr.age]) {
+		acc[curr.age] = ++ acc[curr.age] ;
+	} else {
+		acc[curr.age] = 1;
+	}
+
+	return acc;  //to every time return update object
+}, {})
+console.log(report) // {29 : 2, 75 : 1, 50 : 1}
+
+// function chaining
+
+
+// First name of all people whose age is less than 30
+const users = [
+  { firstName: "Alok", lastName: "Raj", age: 23 },
+  { firstName: "Ashish", lastName: "Kumar", age: 29 },
+  { firstName: "Ankit", lastName: "Roy", age: 29 },
+  { firstName: "Pranav", lastName: "Mukherjee", age: 50 },
+];
+
+// function chaining
+const output = users
+  .filter((user) => user.age < 30)
+  .map((user) => user.firstName);
+console.log(output); // ["Alok", "Ashish", "Ankit"]
+
+// Homework challenge: Implement the same logic using reduce
+const output = users.reduce((acc, curr) => {
+  if (curr.age < 30) {
+    acc.push(curr.firstName);
+  }
+  return acc;
+}, []);
+console.log(output); // ["Alok", "Ashish", "Ankit"]
+
+
+//Episode 20 (Season 2 : Episode 1) : Callback
+
+console.log("Namaste");
+console.log("JavaScript");
+console.log("Season 2");
+// Namaste
+// JavaScript
+// Season 2
+
+
+console.log("Namaste");
+setTimeout(function () {
+  console.log("JavaScript");
+}, 5000);
+console.log("Season 2");
+// Namaste
+// Season 2
+// JavaScript
+
+// 💡 Here we are delaying the execution using callback approach of setTimeout.
+
+
+
+ //e-Commerce web app situation
+ 
+ const cart = ["shoes", "pants", "kurta"];
+// Two steps to place a order
+// 1. Create a Order
+// 2. Proceed to Payment
+
+// It could look something like this:
+api.createOrder();
+api.proceedToPayment();
+
+api.createOrder(cart, function () {
+  api.proceedToPayment();
+});
+// 💡 Over here `createOrder` api is first creating a order then it is responsible to call `api.proceedToPayment()` as part of callback approach.
+
+api.createOrder(cart, function () {
+  api.proceedToPayment(function () {
+    api.showOrderSummary();
+  });
+});
+
+api.createOrder(cart, function () {
+  api.proceedToPayment(function () {
+    api.showOrderSummary(function () {
+      api.updateWallet();
+    });
+  });
+});
+// 💡 Callback Hell
+
+
+api.createOrder(cart, function () {
+  api.proceedToPayment();
+});
+
+// 💡 So over here, we are creating a order and then we are blindly trusting `createOrder` to call `proceedToPayment`.
+
+// 💡 It is risky, as `proceedToPayment` is important part of code and we are blindly trusting `createOrder` to call it and handle it.
+
+// 💡 When we pass a function as a callback, basically we are dependant on our parent function that it is his responsibility to run that function. This is called `inversion of control` because we are dependant on that function. What if parent function stopped working, what if it was developed by another programmer or callback runs two times or never run at all.
+// 💡 In next session, we will see how we can fix such problems.
+
+// Episode 21 (Season 2 : Episode 2) : Promises
+
+const cart = ["shoes", "pants", "kurta"];
+
+// Below two functions are asynchronous and dependent on each other
+const orderId = createOrder(cart);
+proceedToPayment(orderId);
+
+// with Callback (Before Promise)
+// Below here, it is the responsibility of createOrder function to first create the order then call the callback function
+createOrder(cart, function () {
+  proceedToPayment(orderId);
+});
+// Above there is the issue of `Inversion of Control`
+
+const cart = ["shoes", "pants", "kurta"];
+
+const promiseRef = createOrder(cart);
+// this promiseRef has access to `then`
+
+// {data: undefined}
+// Initially it will be undefined so below code won't trigger
+// After some time, when execution has finished and promiseRef has the data then automatically the below line will get triggered.
+
+promiseRef.then(function () {
+  proceedToPayment(orderId);
+});
+
+
+//
+
+// We will be calling public github api to fetch data
+const URL = "https://api.github.com/users/alok722";
+const user = fetch(URL);
+// User above will be a promise.
+console.log(user); // Promise {<Pending>}
+
+/** OBSERVATIONS:
+ * If we will deep dive and see, this `promise` object has 3 things
+ * `prototype`, `promiseState` & `promiseResult`
+ * & this `promiseResult` is the same data which we talked earlier as data
+ * & initially `promiseResult` is `undefined`
+ *
+ * `promiseResult` will store data returned from API call
+ * `promiseState` will tell in which state the promise is currently, initially it will be in `pending` state and later it will become `fulfilled`
+ */
+
+/**
+ * When above line is executed, `fetch` makes API call and return a `promise` instantly which is in `Pending` state and Javascript doesn't wait to get it `fulfilled`
+ * And in next line it console out the `pending promise`.
+ * NOTE: chrome browser has some in-consistency, the moment console happens it shows in pending state but if you will expand that it will show fulfilled because chrome updated the log when promise get fulfilled.
+ * Once fulfilled data is there in promiseResult and it is inside body in ReadableStream format and there is a way to extract data.
+ */
+ 
+ const URL = "https://api.github.com/users/alok722";
+const user = fetch(URL);
+
+user.then(function (data) {
+  console.log(data);
+});
+// And this is how Promise is used.
+// It guarantees that it could be resolved only once, either it could be `success` or `failure`
+/**
+    A Promise is in one of these states:
+
+    pending: initial state, neither fulfilled nor rejected.
+    fulfilled: meaning that the operation was completed successfully.
+    rejected: meaning that the operation failed.
+ */
+ 
+ 
+ // Callback Hell Example
+createOrder(cart, function (orderId) {
+  proceedToPayment(orderId, function (paymentInf) {
+    showOrderSummary(paymentInf, function (balance) {
+      updateWalletBalance(balance);
+    });
+  });
+});
+// And now above code is expanding horizontally and this is called pyramid of doom.
+// Callback hell is ugly and hard to maintain.
+
+// 💡 Promise fixes this issue too using `Promise Chaining`
+// Example Below is a Promise Chaining
+createOrder(cart)
+  .then(function (orderId) {
+    proceedToPayment(orderId);
+  })
+  .then(function (paymentInf) {
+    showOrderSummary(paymentInf);
+  })
+  .then(function (balance) {
+    updateWalletBalance(balance);
+  });
+
+// ⚠️ Common PitFall
+// We forget to return promise in Promise Chaining
+// The idea is promise/data returned from one .then become data for next .then
+// So,
+createOrder(cart)
+  .then(function (orderId) {
+    return proceedToPayment(orderId);
+  })
+  .then(function (paymentInf) {
+    return showOrderSummary(paymentInf);
+  })
+  .then(function (balance) {
+    return updateWalletBalance(balance);
+  });
+
+// To improve readability you can use arrow function instead of regular function
+
+
+// Episode 22 (Season 2 : Episode 3) : Creating a Promise, Chaining & Error Handling
+
+
+const cart = ["shoes", "pants", "kurta"];
+
+// Consumer part of promise
+const promise = createOrder(cart); // orderId
+// Our expectation is above function is going to return me a promise.
+
+promise.then(function (orderId) {
+  proceedToPayment(orderId);
+});
+
+// Above snippet we have observed in our previous lecture itself.
+// Now we will see, how createOrder is implemented so that it is returning a promise
+// In short we will see, "How we can create Promise" and then return it.
+
+// Producer part of Promise
+function createOrder(cart) {
+  // JS provides a Promise constructor through which we can create promise
+  // It accepts a callback function with two parameter `resolve` & `reject`
+  const promise = new Promise(function (resolve, reject) {
+    // What is this `resolve` and `reject`?
+    // These are function which are passed by javascript to us in order to handle success and failure of function call.
+    // Now we will write logic to `createOrder`
+    /** Mock logic steps
+     * 1. validateCart
+     * 2. Insert in DB and get an orderId
+     */
+    // We are assuming in real world scenario, validateCart would be defined
+    if (!validateCart(cart)) {
+      // If cart not valid, reject the promise
+      const err = new Error("Cart is not Valid");
+      reject(err);
+    }
+    const orderId = "12345"; // We got this id by calling to db (Assumption)
+    if (orderId) {
+      // Success scenario
+      resolve(orderId);
+    }
+  });
+  return promise;
+}
+
+//
+
+const cart = ["shoes", "pants", "kurta"];
+
+const promise = createOrder(cart); // orderId
+// ❓ What will be printed in below line?
+// It prints Promise {<pending>}, but why?
+// Because above createOrder is going to take sometime to get resolved, so pending state. But once the promise is resolved, `.then` would be executed for callback.
+console.log(promise);
+
+promise.then(function (orderId) {
+  proceedToPayment(orderId);
+});
+
+function createOrder(cart) {
+  const promise = new Promise(function (resolve, reject) {
+    if (!validateCart(cart)) {
+      const err = new Error("Cart is not Valid");
+      reject(err);
+    }
+    const orderId = "12345";
+    if (orderId) {
+      resolve(orderId);
+    }
+  });
+  return promise;
+}
+
+//
+
+const cart = ["shoes", "pants", "kurta"];
+
+const promise = createOrder(cart); // orderId
+
+// Here we are consuming Promise and will try to catch promise error
+promise
+  .then(function (orderId) {
+    // ✅ success aka resolved promise handling
+    proceedToPayment(orderId);
+  })
+  .catch(function (err) {
+    // ⚠️ failure aka reject handling
+    console.log(err);
+  });
+
+// Here we are creating Promise
+function createOrder(cart) {
+  const promise = new Promise(function (resolve, reject) {
+    // Assume below `validateCart` return false then the promise will be rejected
+    // And then our browser is going to throw the error.
+    if (!validateCart(cart)) {
+      const err = new Error("Cart is not Valid");
+      reject(err);
+    }
+    const orderId = "12345";
+    if (orderId) {
+      resolve(orderId);
+    }
+  });
+  return promise;
+}
+
+const cart = ["shoes", "pants", "kurta"];
+
+createOrder(cart)
+  .then(function (orderId) {
+    // ✅ success aka resolved promise handling
+    proceedToPayment(orderId);
+    return orderId;
+  })
+  .then(function (orderId) {
+    // Promise chaining
+    // 💡 we will make sure that `proceedToPayment` returns a promise too
+    return proceedToPayment(orderId);
+  })
+  .then(function (paymentInfo) {
+    // from above, `proceedToPayment` is returning a promise so we can consume using `.then`
+    console.log(paymentInfo);
+  })
+  .catch(function (err) {
+    // ⚠️ failure aka reject handling
+    console.log(err);
+  });
+
+// Here we are creating Promise
+function createOrder(cart) {
+  const promise = new Promise(function (resolve, reject) {
+    // Assume below `validateCart` return false then the promise will be rejected
+    // And then our browser is going to throw the error.
+    if (!validateCart(cart)) {
+      const err = new Error("Cart is not Valid");
+      reject(err);
+    }
+    const orderId = "12345";
+    if (orderId) {
+      resolve(orderId);
+    }
+  });
+  return promise;
+}
+
+function proceedToPayment(cart) {
+  return new Promise(function (resolve, reject) {
+    // For time being, we are simply `resolving` promise
+    resolve("Payment Successful");
+  });
+}
+
+createOrder(cart)
+  .then(function (orderId) {
+    // ✅ success aka resolved promise handling
+    proceedToPayment(orderId);
+    return orderId;
+  })
+    .catch(function (err) {
+    // ⚠️ Whatever fails below it, catch wont care
+    // this block is responsible for code block above it.
+    console.log(err);
+  });
+  .then(function (orderId) {
+    // Promise chaining
+    // 💡 we will make sure that `proceedToPayment` returns a promise too
+    return proceedToPayment(orderId);
+  })
+  .then(function (paymentInfo) {
+    // from above, `proceedToPayment` is returning a promise so we can consume using `.then`
+    console.log(paymentInfo);
+  })
+
