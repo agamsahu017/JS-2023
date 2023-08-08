@@ -1,0 +1,165 @@
+//1
+
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+const count = document.querySelector(".increment_count");
+
+let pressedCount = 0;
+let triggerCount = 0;
+
+btn.addEventListener("click", () => {
+  // console.log("hi preessed");
+  btnPress.innerHTML = ++pressedCount;
+  count.innerHTML = ++triggerCount;
+});
+
+//2
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+const count = document.querySelector(".increment_count");
+
+let pressedCount = 0;
+let triggerCount = 0;
+
+const debouncedFn=  _.debounce(()=>{
+  count.innerHTML = ++triggerCount;
+}, 800)
+
+btn.addEventListener("click", () => {
+  // console.log("hi preessed");
+  btnPress.innerHTML = ++pressedCount;
+  debouncedFn()
+});
+
+/////////////////////////////
+
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+
+///////////////////////////////////////////////
+
+
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+const count = document.querySelector(".increment_count");
+
+let pressedCount = 0;
+let triggerCount = 0;
+
+const myDebounce = (cb, d) => {
+  let timer;
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb(...args);
+    }, d);
+  };
+};
+const debouncedFn = myDebounce(() => {
+  count.innerHTML = ++triggerCount;
+}, 800);
+
+// const throttleFn=  _.throttle(()=>{
+//   count.innerHTML = ++triggerCount;
+// }, 1800)
+
+btn.addEventListener("click", () => {
+  // console.log("hi preessed");
+  btnPress.innerHTML = ++pressedCount;
+  // throttleFn()
+  debouncedFn();
+});
+
+const count = document.querySelector(".increment_count");
+
+let pressedCount = 0;
+let triggerCount = 0;
+
+const throttleFn=  _.throttle(()=>{
+  count.innerHTML = ++triggerCount;
+}, 1800)
+
+btn.addEventListener("click", () => {
+  // console.log("hi preessed");
+  btnPress.innerHTML = ++pressedCount;
+  throttleFn()
+})
+
+//Debounce pollyfill
+
+const myDebounce=(cb, d)=>{
+let timer;
+return function(...args){
+     timer= setTimeout(()=>{
+  cb(...args)
+}, d)
+}
+}
+
+.//Throttle ployfill
+
+const myThrottle=(cb, d)=>{
+let last=0;
+
+return (...args)=>{
+let now= newDate().getTime()
+if(now -last < d) return
+last=now
+return cb(...args)
+}
+
+}
+
+import "./styles.css";
+
+console.log("hi agam");
+
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+const count = document.querySelector(".increment_count");
+
+let pressedCount = 0;
+let triggerCount = 0;
+
+// const myDebounce = (cb, d) => {
+//   let timer;
+//   return function (...args) {
+//     if (timer) clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       cb(...args);
+//     }, d);
+//   };
+// };
+
+const myThrottle = (cb, d) => {
+  let last = 0;
+
+  return (...args) => {
+    let now = new Date().getTime();
+    if (now - last < d) return;
+    last = now;
+    return cb(...args);
+  };
+};
+// const debouncedFn = myDebounce(() => {
+//   count.innerHTML = ++triggerCount;
+// }, 800);
+
+const throttleFn = myThrottle(() => {
+  count.innerHTML = ++triggerCount;
+}, 500);
+
+btn.addEventListener("click", () => {
+  // console.log("hi preessed");
+  btnPress.innerHTML = ++pressedCount;
+  throttleFn();
+  // debouncedFn();
+});
+
+
+<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
