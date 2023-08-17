@@ -22,3 +22,36 @@
     box-shadow: 0 0 5px grey;
     border-radius: 10px;
 }
+
+#outer {
+    background-color: #ffd700; /* Outer div background color (gold) */
+    padding: 20px;
+    text-align: center;
+  }
+
+  #inner {
+    background-color: #ff6347; /* Inner div background color (tomato) */
+    padding: 20px;
+  }
+
+  #button {
+    background-color: #4caf50; /* Button background color (green) */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .products {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 10px;
+  }
+  span {
+    width: 100px;
+    height: 100px;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
